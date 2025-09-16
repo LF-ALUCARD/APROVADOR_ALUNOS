@@ -1,0 +1,43 @@
+## Compilação
+bin/
+obj/
+[Bb]uild/
+[Ll]og/
+
+## Arquivos temporários do Visual Studio
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+## Cache
+.vs/
+*.dbmdl
+*.bak
+*.cache
+*.pdb
+
+## Publicação
+.publish/
+*.Publish.xml
+
+## Configurações locais
+*.config
+appsettings.Development.json
+
+## Arquivos gerados por pacotes
+packages/
+*.nupkg
+*.snupkg
+
+## Testes e relatórios
+TestResult*/
+[Ll]og/
+*.coverage
+*.coveragexml
+
+## Outros arquivos desnecessários
+*.tmp
+*.swp
+*.DS_Store
+Thumbs.db
