@@ -10,6 +10,8 @@ obj/
 *.userosscache
 *.sln.docstates
 
+*.sln
+
 ## Cache
 .vs/
 *.dbmdl
