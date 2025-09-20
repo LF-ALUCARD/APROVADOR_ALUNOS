@@ -13,6 +13,10 @@ namespace APROVADOR_ALUNOS
             lista.inserir(3);
 
             lista.print();
+
+            lista.remover_final();
+
+            lista.print();
         }
     }
 }

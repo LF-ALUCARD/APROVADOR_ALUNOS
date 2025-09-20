@@ -38,6 +38,16 @@ namespace APROVADOR_ALUNOS.services
             tamanho++;
         }
 
+        public void remover_final()
+        {
+            No<T> atual = inicio;
+
+            for (int i = 0; i < tamanho - 2; i++)
+            {
+                atual = atual.getNo();
+            }
+            atual.setNo(null);
+        }
         public void print()
         {
             No<T> atual = inicio;
