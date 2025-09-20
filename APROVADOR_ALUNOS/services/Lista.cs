@@ -19,5 +19,34 @@ namespace APROVADOR_ALUNOS.services
 
         public int getTamanho() { return tamanho; }
 
+        public void inserir(T elemento)
+        {
+            No<T> celula = new No<T>(elemento);
+            if (tamanho == 0)
+            {
+                inicio = celula;
+            }
+            else
+            {
+                No<T> atual = inicio;
+                while (atual.getNo() != null)
+                {
+                    atual = atual.getNo();
+                }
+                atual.setNo(celula);
+            }
+            tamanho++;
+        }
+
+        public void print()
+        {
+            No<T> atual = inicio;
+            while (atual != null)
+            {
+                Console.WriteLine(atual.getElemento());
+                atual = atual.getNo();
+            }
+        }
+
     }
 }
