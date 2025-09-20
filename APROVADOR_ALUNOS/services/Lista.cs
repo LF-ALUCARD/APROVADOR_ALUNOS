@@ -48,6 +48,22 @@ namespace APROVADOR_ALUNOS.services
             }
             atual.setNo(null);
         }
+
+        public T Buscar(int id)
+        {
+            No<T> atual = inicio;
+            for(int i = 0; i < tamanho; i++)
+            {
+                if (id == i)
+                {
+                    return atual.getElemento();
+                }
+                atual = atual.getNo();
+            }
+            return default(T);
+            
+        }
+
         public void print()
         {
             No<T> atual = inicio;
@@ -57,6 +73,5 @@ namespace APROVADOR_ALUNOS.services
                 atual = atual.getNo();
             }
         }
-
     }
 }

@@ -1,4 +1,5 @@
-﻿using APROVADOR_ALUNOS.services;
+﻿using APROVADOR_ALUNOS.entidades;
+using APROVADOR_ALUNOS.services;
 
 namespace APROVADOR_ALUNOS
 {
@@ -6,17 +7,19 @@ namespace APROVADOR_ALUNOS
     {
         static void Main(string[] args)
         {
-            Lista<int> lista = new Lista<int>();
+            Lista<Aluno> lista = new Lista<Aluno>();
+            
+            Aluno obj1 = new Aluno(48569, "BOT 1", 20);
+            Aluno obj2 = new Aluno(48756, "BOT 2", 25);
+            Aluno obj3 = new Aluno(48852, "BOT 3", 18);
 
-            lista.inserir(1);
-            lista.inserir(2);
-            lista.inserir(3);
+            lista.inserir(obj1);
+            lista.inserir(obj2);
+            lista.inserir(obj3);
 
-            lista.print();
+            Aluno busca = lista.Buscar(1);
 
-            lista.remover_final();
-
-            lista.print();
+            Console.WriteLine(busca);
         }
     }
 }
