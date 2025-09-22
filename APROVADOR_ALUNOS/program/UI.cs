@@ -90,7 +90,7 @@ namespace APROVADOR_ALUNOS.program
             }
             else if (opcao == 2)
             {
-               
+                Por_Aluno_Mátricula();
             }
             else
             {
@@ -121,12 +121,34 @@ namespace APROVADOR_ALUNOS.program
             continuar(); //Volta ao Menu Inicial do Projeto
         }
 
+        private void Por_Aluno_Mátricula() //Opção para buscar o Aluno Por nome
+        {
+            Console.Clear();
+            Console.Write("Digite a matricula do Aluno: ");
+            int matricula = int.Parse(Console.ReadLine());
+
+            if (!ServicosAlunos.verificador_matricula(matricula))
+            {
+                Console.WriteLine("Nome não encontrado");
+                continuar();
+            }
+
+            Aluno estudante = ServicosAlunos.Buscar_Matricula(matricula); //Método que retorna o objeto aluno pelo nome
+
+
+            Console.WriteLine();
+
+            Console.WriteLine("===DADOS DO ALUNO==");
+            ServicosCursos.ListarDesempenhoDoAluno(estudante, this.curso); //Método void que imprime os dados do Aluno com a lista de disciplinas cursadas
+            continuar(); //Volta ao Menu Inicial do Projeto
+        }
+
         private void Por_Discipluna()
         {
 
         }
 
-        // Metodo para apagar tudo e iniciar camêra do zero
+        // Metodo para apagar tudo e iniciar Menu do zero
         private void continuar()
         {
             Console.WriteLine("clique em alguma tecla para continuar!");

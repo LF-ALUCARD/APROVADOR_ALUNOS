@@ -86,5 +86,21 @@ namespace APROVADOR_ALUNOS.services.alunos
             }
             return false;
         }
+
+        public static Boolean verificador_matricula(int matricula) //Verificador se o id procurado está na minha lista
+        {
+            No<Aluno> atual = lista.getInicio();
+
+            while (atual != null)
+            {
+                Aluno aluno = atual.getElemento();
+                if (matricula == aluno.getMatricula())
+                {
+                    return true;
+                }
+                atual = atual.getNo();
+            }
+            return false;
+        }
     }
 }
