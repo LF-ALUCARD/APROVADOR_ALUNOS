@@ -30,44 +30,125 @@ namespace APROVADOR_ALUNOS.services.curso
         }
 
 
-        public static void ListarDesempenhoDoAluno(Aluno aluno, Lista<Curso> curso) //Lógica construida para exibir os dados do meu aluno, com as disciplina
+
+        public static void ListarDesempenhoDoAluno(Aluno aluno, Lista<Curso> curso)
         {
             Console.Clear();
-            Console.WriteLine($"Desempenho do aluno: {aluno.getNome()} (Matrícula: {aluno.getMatricula()})\n");
+            string caminhoPasta = @"C:\dados_pesquisa";
+            string caminhoArquivo = Path.Combine(caminhoPasta, "dados_pesquisa.txt");
 
-            No<Curso> atual = curso.getInicio();
-            bool encontrou = false;
-
-            while (atual != null) //Lógica construida para buscar as disciplinas do meu aluno e exibir
+            // Verifica se a pasta existe, senão cria
+            if (!Directory.Exists(caminhoPasta))
             {
-                Curso cursoAtual = atual.getElemento();
+                Directory.CreateDirectory(caminhoPasta);
+            }
 
-                if (cursoAtual.getAluno().getAluno().getMatricula() == aluno.getMatricula())
+            using (StreamWriter writer = new StreamWriter(caminhoArquivo, true)) // true = append
+            {
+                string cabecalho = $"Desempenho do aluno: {aluno.getNome()} (Matrícula: {aluno.getMatricula()})\n";
+                Console.WriteLine(cabecalho);
+                writer.WriteLine(cabecalho);
+
+                No<Curso> atual = curso.getInicio();
+                bool encontrou = false;
+
+                while (atual != null)
                 {
-                    encontrou = true;
+                    Curso cursoAtual = atual.getElemento();
 
-                    Disciplina disciplina = cursoAtual.getAluno().getDisciplina();
-                    float nota1 = cursoAtual.getNota1();
-                    float nota2 = cursoAtual.getNota2();
-                    float media = (nota1 + nota2) / 2;
-                    float notaMinima = disciplina.getNotaMinima();
+                    if (cursoAtual.getAluno().getAluno().getMatricula() == aluno.getMatricula())
+                    {
+                        encontrou = true;
 
-                    string resultado = media >= notaMinima ? "Aprovado" : "Reprovado";
+                        Disciplina disciplina = cursoAtual.getAluno().getDisciplina();
+                        float nota1 = cursoAtual.getNota1();
+                        float nota2 = cursoAtual.getNota2();
+                        float media = (nota1 + nota2) / 2;
+                        float notaMinima = disciplina.getNotaMinima();
 
-                    Console.WriteLine($"Disciplina: {disciplina.getNome()}");
-                    Console.WriteLine($"Nota 1: {nota1} | Nota 2: {nota2} | Média: {media:F1}");
-                    Console.WriteLine($"Nota mínima: {notaMinima} | Resultado: {resultado}");
-                    Console.WriteLine("----------------------------------------");
+                        string resultado = media >= notaMinima ? "Aprovado" : "Reprovado";
+
+                        string dadosDisciplina = $"Disciplina: {disciplina.getNome()}\n" +
+                                                 $"Nota 1: {nota1} | Nota 2: {nota2} | Média: {media:F1}\n" +
+                                                 $"Nota mínima: {notaMinima} | Resultado: {resultado}\n" +
+                                                 "----------------------------------------";
+
+                        Console.WriteLine(dadosDisciplina);
+                        writer.WriteLine(dadosDisciplina);
+                    }
+
+                    atual = atual.getNo();
                 }
 
-                atual = atual.getNo();
-            }
-
-            if (!encontrou) //Excessão para caso o meu aluno não tenha nenhuma disciplina
-            {
-                Console.WriteLine("Este aluno não possui disciplinas registradas.");
+                if (!encontrou)
+                {
+                    string msg = "Nenhuma disciplina encontrada para este aluno.\n";
+                    Console.WriteLine(msg);
+                    writer.WriteLine(msg);
+                }
             }
         }
+
+
+        public static void ListarDesempenhoDaDisciplina(Disciplina disciplina, Lista<Curso> cursos)
+        {
+            Console.Clear();
+            string caminhoPasta = @"C:\dados_pesquisa";
+            string caminhoArquivo = Path.Combine(caminhoPasta, "dados_pesquisa.txt");
+
+            // Verifica se a pasta existe, senão cria
+            if (!Directory.Exists(caminhoPasta))
+            {
+                Directory.CreateDirectory(caminhoPasta);
+            }
+
+            using (StreamWriter writer = new StreamWriter(caminhoArquivo, true)) // true = append
+            {
+                string cabecalho = $"Desempenho na disciplina: {disciplina.getNome()} (Código: {disciplina.getCodicoDisciplina()})\n";
+                Console.WriteLine(cabecalho);
+                writer.WriteLine(cabecalho);
+
+                No<Curso> atual = cursos.getInicio();
+                bool encontrou = false;
+
+                while (atual != null)
+                {
+                    Curso cursoAtual = atual.getElemento();
+
+                    // Verifica se o curso é da disciplina desejada
+                    if (cursoAtual.getAluno().getDisciplina().getCodicoDisciplina() == disciplina.getCodicoDisciplina())
+                    {
+                        encontrou = true;
+
+                        Aluno aluno = cursoAtual.getAluno().getAluno();
+                        float nota1 = cursoAtual.getNota1();
+                        float nota2 = cursoAtual.getNota2();
+                        float media = (nota1 + nota2) / 2;
+                        float notaMinima = disciplina.getNotaMinima();
+
+                        string resultado = media >= notaMinima ? "Aprovado" : "Reprovado";
+
+                        string dadosAluno = $"Aluno: {aluno.getNome()} (Matrícula: {aluno.getMatricula()})\n" +
+                                            $"Nota 1: {nota1} | Nota 2: {nota2} | Média: {media:F1}\n" +
+                                            $"Nota mínima: {notaMinima} | Resultado: {resultado}\n" +
+                                            "----------------------------------------";
+
+                        Console.WriteLine(dadosAluno);
+                        writer.WriteLine(dadosAluno);
+                    }
+
+                    atual = atual.getNo();
+                }
+
+                if (!encontrou)
+                {
+                    string msg = "Nenhum aluno encontrado para esta disciplina.\n";
+                    Console.WriteLine(msg);
+                    writer.WriteLine(msg);
+                }
+            }
+        }
+
 
     }
 }

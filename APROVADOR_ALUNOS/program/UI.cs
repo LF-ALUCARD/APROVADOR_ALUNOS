@@ -145,6 +145,36 @@ namespace APROVADOR_ALUNOS.program
 
         private void Por_Discipluna()
         {
+            Console.Clear(); //Faz a limpeza do console, para imprimir o novo Menu
+            Console.WriteLine("MENU DE BUSCA DE DISCIPLINA");
+            Console.WriteLine("[1] - Buscar por nome");
+            Console.WriteLine("[2] - Buscar por códico");
+            Console.Write("Digite sua opção: ");
+
+            int opcao = int.Parse(Console.ReadLine());
+
+            if (opcao == 1)
+            {
+                Por_Disciplina_Nome();
+            }
+            else if (opcao == 2)
+            {
+                Por_Disciplina_Codico();
+            }
+            else
+            {
+                Console.WriteLine("Opção invalida!");
+                continuar(); //Caso escolha uma opção errada, volta para o inicio
+            }
+        }
+
+        public void Por_Disciplina_Nome()
+        {
+
+        }
+
+        public void Por_Disciplina_Codico()
+        {
 
         }
 
