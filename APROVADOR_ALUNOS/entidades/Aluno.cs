@@ -32,7 +32,9 @@ namespace APROVADOR_ALUNOS.entidades
 
         public override string ToString()
         {
-            return $"Nome: {this.nome} || Idade: {this.idade} || Matricula: {this.matricula}";
+            return $"Nome: {this.nome}  + || \n " +
+                   $"Idade: {this.idade} || \n " +
+                   $"Matricula: {this.matricula} ||";
         }
     }
 }

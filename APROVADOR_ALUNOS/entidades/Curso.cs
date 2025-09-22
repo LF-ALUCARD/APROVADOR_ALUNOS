@@ -1,5 +1,6 @@
 ﻿using APROVADOR_ALUNOS.entidades.PK;
 using APROVADOR_ALUNOS.services.alunos;
+using APROVADOR_ALUNOS.services.disciplina;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace APROVADOR_ALUNOS.entidades
         public Curso (int matricula, int codicoDisciplina, float nota1, float nota2)
         {
             aluno.setAluno(ServicosAlunos.Buscar_Matricula(matricula)); // Busca o aluno da lista de Matricula
-            aluno.setDisciplina();
+            aluno.setDisciplina(ServicosDisciplina.Buscar_codigo(codicoDisciplina));
             this.nota1 = nota1;
             this.nota2 = nota2;
         }

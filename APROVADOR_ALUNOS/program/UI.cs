@@ -1,4 +1,6 @@
-﻿using System;
+﻿using APROVADOR_ALUNOS.entidades;
+using APROVADOR_ALUNOS.services.alunos;
+using System;
 
 namespace APROVADOR_ALUNOS.program
 {
@@ -82,6 +84,11 @@ namespace APROVADOR_ALUNOS.program
             Console.Clear();
             Console.Write("Digite o nome completo do Aluno: ");
             String nome = Console.ReadLine();
+            Aluno aluno = ServicosAlunos.Buscar_Nome(nome);
+
+            Console.WriteLine();
+
+            Console.WriteLine("===DADOS DO ALUNO==");
         }
 
         private static void Por_Discipluna()

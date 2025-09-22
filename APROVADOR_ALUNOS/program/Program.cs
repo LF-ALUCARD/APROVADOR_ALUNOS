@@ -1,7 +1,7 @@
 ﻿using APROVADOR_ALUNOS.entidades;
-using APROVADOR_ALUNOS.program;
 using APROVADOR_ALUNOS.services;
-using APROVADOR_ALUNOS.services.alunos;
+
+using APROVADOR_ALUNOS.services.disciplina;
 
 namespace APROVADOR_ALUNOS
 {
@@ -9,11 +9,16 @@ namespace APROVADOR_ALUNOS
     {
         static void Main(string[] args)
         {
-            String caminho = "C:\\Users\\luiz.oliveira\\Documents\\in.txt";
+            String caminho = "C:\\Users\\luiz.oliveira\\Documents\\aluno.txt";
+            String caminho2 = "C:\\Users\\luiz.oliveira\\Documents\\disciplina.txt";
 
-            while (true) {
-                UI.menu();
-            }
+            Lista<Disciplina> lista = ServicosDisciplina.iniciar(caminho2);
+
+            lista.print();
+
+            //while (true) {
+           //     UI.menu();
+           // }
 
         }
     }
