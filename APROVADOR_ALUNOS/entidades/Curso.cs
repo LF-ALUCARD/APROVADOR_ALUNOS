@@ -1,4 +1,6 @@
-﻿using System;
+﻿using APROVADOR_ALUNOS.entidades.PK;
+using APROVADOR_ALUNOS.services.alunos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +10,7 @@ namespace APROVADOR_ALUNOS.entidades
 {
     internal class Curso
     {
-        private int matricula;
-        private int codicoDisciplina;
+        private Aluno_Curso aluno;
         private float nota1;
         private float nota2;
 
@@ -17,17 +18,11 @@ namespace APROVADOR_ALUNOS.entidades
 
         public Curso (int matricula, int codicoDisciplina, float nota1, float nota2)
         {
-            this.matricula = matricula;
-            this.codicoDisciplina = codicoDisciplina;
+            aluno.setAluno(ServicosAlunos.Buscar_Matricula(matricula)); // Busca o aluno da lista de Matricula
+            aluno.setDisciplina();
             this.nota1 = nota1;
             this.nota2 = nota2;
         }
-
-        public int getMatricula() { return matricula; }
-        public void setMatricula(int matricula) {  this.matricula = matricula; }
-
-        public int getCodicoDisciplina() { return codicoDisciplina;}
-        public void setCodicoDisciplina(int codicoDisciplina) {this.codicoDisciplina = codicoDisciplina;}
 
         public float getNota1() { return nota1; }
         public void setNota1(float nota1) { this.nota1 = nota1; }
@@ -37,7 +32,7 @@ namespace APROVADOR_ALUNOS.entidades
 
         public override string ToString()
         {
-            return $"Matricula: {this.matricula} || Códico Disciplina: {this.codicoDisciplina} " +
+            return $"Matricula: {this.aluno.getAluno().getMatricula} || Códico Disciplina: {this.aluno.getDisciplina().getCodicoDisciplina} " +
                 $"|| 1° Nota: {this.nota1} || 2° Nota: {this.nota2}";
         }
 

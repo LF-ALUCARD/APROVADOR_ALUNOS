@@ -54,7 +54,34 @@ namespace APROVADOR_ALUNOS.program
 
         private static void Por_Aluno()
         {
-         
+            Console.Clear();
+            Console.WriteLine("MENU DE BUSCA DE ALUNO");
+            Console.WriteLine("[1] - Buscar por nome");
+            Console.WriteLine("[2] - Buscar por matricula");
+
+            int opcao = int.Parse(Console.ReadLine());
+
+            if (opcao == 1)
+            {
+                
+            }
+            else if (opcao == 2)
+            {
+               
+            }
+            else
+            {
+                Console.WriteLine("Opção invalida!");
+                continuar();
+            }
+
+        }
+
+        private static void Por_Aluno_Nome()
+        {
+            Console.Clear();
+            Console.Write("Digite o nome completo do Aluno: ");
+            String nome = Console.ReadLine();
         }
 
         private static void Por_Discipluna()

@@ -17,6 +17,7 @@ namespace APROVADOR_ALUNOS.services
         }
 
         public int getTamanho() { return tamanho; }
+        public No<T> getInicio() { return inicio; }
 
         public void inserir(T elemento)
         {
