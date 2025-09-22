@@ -19,17 +19,17 @@ namespace APROVADOR_ALUNOS.entidades
         public Curso() { }
 
 
-        public Curso(int matricula, int codicoDisciplina, float nota1, float nota2, Lista<Aluno> listaAlunos, Lista<Disciplina> listaDisciplinas)
+        public Curso(int matricula, int codicoDisciplina, float nota1, float nota2, Lista<Aluno> listaAlunos, Lista<Disciplina> listaDisciplinas) //Contrutor da minha classe Curso
         {
             this.aluno = new Aluno_Curso();
-            this.aluno.setAluno(ServicosAlunos.Buscar_Matricula(listaAlunos, matricula));
-            this.aluno.setDisciplina(ServicosDisciplina.Buscar_codigo(listaDisciplinas, codicoDisciplina));
+            this.aluno.setAluno(ServicosAlunos.Buscar_Matricula(listaAlunos, matricula)); //Instancia um objeto Aluno na minha chave composta
+            this.aluno.setDisciplina(ServicosDisciplina.Buscar_codigo(listaDisciplinas, codicoDisciplina)); //Instancia um objeto Disciplina na minha chave composta
             this.nota1 = nota1;
             this.nota2 = nota2;
         }
 
 
-
+        //acessos get() e set()
         public Aluno_Curso getAluno()
         {
             return aluno;
@@ -41,6 +41,8 @@ namespace APROVADOR_ALUNOS.entidades
         public float getNota2() { return nota2; }
         public void setNota2(float nota2) { this.nota2 = nota2; }
 
+
+        //Método ToString() para acesso
         public override string ToString()
         {
             return $"Matricula: {this.aluno.getAluno().getMatricula} || Códico Disciplina: {this.aluno.getDisciplina().getCodicoDisciplina} " +

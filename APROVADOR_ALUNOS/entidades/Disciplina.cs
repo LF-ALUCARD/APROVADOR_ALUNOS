@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace APROVADOR_ALUNOS.entidades
 {
-    internal class Disciplina
+    internal class Disciplina //Entidade Disciplina
     {
         private int codicoDisciplina;
         private String nome;
         private float notaMinima;
 
-        public Disciplina() { }
+        public Disciplina() { } //Costrutor Vazio
 
+        //Costrutor com parametros
         public Disciplina(int codicoDisciplina, string nome, float notaMinima)
         {
             this.codicoDisciplina = codicoDisciplina;
@@ -21,6 +22,7 @@ namespace APROVADOR_ALUNOS.entidades
             this.notaMinima = notaMinima;
         }
 
+        //Métodos get e set
         public int getCodicoDisciplina() { return codicoDisciplina; }
         public void setCodicoDisciplina(int codicoDisciplina) { this.codicoDisciplina = codicoDisciplina; }
 
@@ -30,6 +32,7 @@ namespace APROVADOR_ALUNOS.entidades
         public float getNotaMinima() { return notaMinima; }
         public void setNotaMinma(float notaMinima) { notaMinima = notaMinima; }
 
+        //Método toString()
         public override string ToString()
         {
             return $"Códico Disciplina: {this.codicoDisciplina} || Nome: {this.nome} || Nota Minima: {this.notaMinima}";

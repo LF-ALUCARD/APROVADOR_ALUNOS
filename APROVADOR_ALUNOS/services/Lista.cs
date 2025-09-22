@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace APROVADOR_ALUNOS.services
 {
-    internal class Lista<T>
+    internal class Lista<T> //Lista do tipo genérica para não ter que repetir script
     {
         private No<T> inicio;
         private int tamanho;
@@ -19,7 +19,7 @@ namespace APROVADOR_ALUNOS.services
         public int getTamanho() { return tamanho; }
         public No<T> getInicio() { return inicio; }
 
-        public void inserir(T elemento)
+        public void inserir(T elemento) //método de inserir obj
         {
             No<T> celula = new No<T>(elemento);
             if (tamanho == 0)
@@ -38,7 +38,7 @@ namespace APROVADOR_ALUNOS.services
             tamanho++;
         }
 
-        public void remover_final()
+        public void remover_final() //método de remover o ultimo obj
         {
             No<T> atual = inicio;
 
@@ -49,7 +49,7 @@ namespace APROVADOR_ALUNOS.services
             atual.setNo(null);
         }
 
-        public T Buscar(int id)
+        public T Buscar(int id) //busca o objeto por posição
         {
             No<T> atual = inicio;
             for(int i = 0; i < tamanho; i++)
@@ -64,7 +64,7 @@ namespace APROVADOR_ALUNOS.services
             
         }
 
-        public void print()
+        public void print() //imprime a lista do objeto
         {
             No<T> atual = inicio;
             while (atual != null)

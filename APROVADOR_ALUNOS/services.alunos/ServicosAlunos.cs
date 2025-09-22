@@ -7,12 +7,12 @@ namespace APROVADOR_ALUNOS.services.alunos
     {
         private static Lista<Aluno> lista = new Lista<Aluno>();
 
-        public static Lista<Aluno> iniciar(String caminho)
+        public static Lista<Aluno> iniciar(String caminho) //Método usado para instanciar uma Lista de Alunos
         {
             using (StreamReader sr = new StreamReader(caminho))
             {
-                String linha;
-                while ((linha = sr.ReadLine()) != null){
+                String linha; 
+                while ((linha = sr.ReadLine()) != null){ //lógica construida para percorrer o meu arquivo, instanciar e guardar meus objetos.
                     String[] vect = linha.Split(";");
                     Aluno aluno = new Aluno(int.Parse(vect[0]), vect[1], int.Parse(vect[2]));
                     lista.inserir(aluno);
@@ -21,7 +21,7 @@ namespace APROVADOR_ALUNOS.services.alunos
             return lista;
         }
 
-        public static Aluno Buscar_Matricula(int matricula)
+        public static Aluno Buscar_Matricula(int matricula) //Método usado para instanciar um Aluno a partir do Id.
         {
             No<Aluno> atual = lista.getInicio();
 
@@ -37,7 +37,7 @@ namespace APROVADOR_ALUNOS.services.alunos
             return null;
         }
 
-        public static Aluno Buscar_Matricula(Lista<Aluno> listaAlunos, int matricula)
+        public static Aluno Buscar_Matricula(Lista<Aluno> listaAlunos, int matricula) //Sobrescrita usada para instanciar minha lista de Curso
         {
             No<Aluno> atual = listaAlunos.getInicio();
 
@@ -55,7 +55,7 @@ namespace APROVADOR_ALUNOS.services.alunos
         }
 
 
-        public static Aluno Buscar_Nome(String nome)
+        public static Aluno Buscar_Nome(String nome) //Método usado para instanciar um Aluno a partir do nome.
         {
             No<Aluno> atual = lista.getInicio();
 
@@ -71,7 +71,7 @@ namespace APROVADOR_ALUNOS.services.alunos
             return null;
         }
 
-        public static Boolean verificador_nome(String nome)
+        public static Boolean verificador_nome(String nome) //Verificador se o nome procurado está na minha lista
         {
             No<Aluno> atual = lista.getInicio();
 

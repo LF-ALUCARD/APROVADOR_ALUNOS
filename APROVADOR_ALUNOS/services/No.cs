@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace APROVADOR_ALUNOS.services
 {
-    internal class No<T>
+    internal class No<T> //Minha classe genérica célula da Lista
     {
         private T elemento;
         private No<T> no;
 
-        public No(T elemento)
+        public No(T elemento) //Meu construtor que só recebe o elemento
         {
             this.elemento = elemento;
             this.no = null;
         }
 
-        public No(T elemento, No<T> no)
+        public No(T elemento, No<T> no) //construtor que recebe para onde vai apontar e o elemento
         {
             this.elemento = elemento;
             this.no = no;

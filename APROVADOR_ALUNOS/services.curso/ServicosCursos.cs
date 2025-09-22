@@ -5,15 +5,15 @@ namespace APROVADOR_ALUNOS.services.curso
 {
     internal class ServicosCursos
     {
-        private static Lista<Curso> lista = new Lista<Curso>();
-        public static Lista<Curso> iniciar(String caminho, Lista<Aluno> listaAlunos, Lista<Disciplina> listaDisciplinas)
+        private static Lista<Curso> lista = new Lista<Curso>(); //Instancia uma lista na classe para trabalhar com os métodos
+        public static Lista<Curso> iniciar(String caminho, Lista<Aluno> listaAlunos, Lista<Disciplina> listaDisciplinas) //Instancia minha lista de curso a partir da minha lista de Alunos e Disciplinas
         {
             Lista<Curso> lista = new Lista<Curso>();
 
             using (StreamReader sr = new StreamReader(caminho))
             {
                 String linha;
-                while ((linha = sr.ReadLine()) != null)
+                while ((linha = sr.ReadLine()) != null) //Lógica construida para percorrer minha lista de Curso
                 {
                     String[] vect = linha.Split(";");
                     int matricula = int.Parse(vect[0]);
@@ -30,7 +30,7 @@ namespace APROVADOR_ALUNOS.services.curso
         }
 
 
-        public static void ListarDesempenhoDoAluno(Aluno aluno, Lista<Curso> curso)
+        public static void ListarDesempenhoDoAluno(Aluno aluno, Lista<Curso> curso) //Lógica construida para exibir os dados do meu aluno, com as disciplina
         {
             Console.Clear();
             Console.WriteLine($"Desempenho do aluno: {aluno.getNome()} (Matrícula: {aluno.getMatricula()})\n");
@@ -38,7 +38,7 @@ namespace APROVADOR_ALUNOS.services.curso
             No<Curso> atual = curso.getInicio();
             bool encontrou = false;
 
-            while (atual != null)
+            while (atual != null) //Lógica construida para buscar as disciplinas do meu aluno e exibir
             {
                 Curso cursoAtual = atual.getElemento();
 
@@ -63,46 +63,11 @@ namespace APROVADOR_ALUNOS.services.curso
                 atual = atual.getNo();
             }
 
-            if (!encontrou)
+            if (!encontrou) //Excessão para caso o meu aluno não tenha nenhuma disciplina
             {
                 Console.WriteLine("Este aluno não possui disciplinas registradas.");
             }
         }
-
-
-
-        public static Curso BuscarPorMatricula(int matricula)
-        {
-            No<Curso> atual = lista.getInicio();
-
-            while (atual != null)
-            {
-                Curso curso = atual.getElemento();
-                if (curso.getAluno().getAluno().getMatricula() == matricula)
-                {
-                    return curso;
-                }
-                atual = atual.getNo();
-            }
-            return null;
-        }
-
-        public static Curso Buscar_Nome(String nome)
-        {
-            No<Curso> atual = lista.getInicio();
-
-            while (atual != null)
-            {
-                Curso curso = atual.getElemento();
-                if (nome == curso.getAluno().getAluno().getNome())
-                {
-                    return curso;
-                }
-                atual = atual.getNo();
-            }
-            return null;
-        }
-
 
     }
 }

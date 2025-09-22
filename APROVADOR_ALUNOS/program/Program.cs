@@ -14,7 +14,7 @@ namespace APROVADOR_ALUNOS
             String caminho2 = "C:\\Users\\luiz.oliveira\\Documents\\disciplina.txt";
             String caminho3 = "C:\\Users\\luiz.oliveira\\Documents\\curso.txt";
 
-            UI ui = new UI(caminho, caminho2, caminho3);
+            UI ui = new UI(caminho, caminho2, caminho3); //Instancia minhas listas e meu UI de console
 
             while (true) {
                 ui.menu();

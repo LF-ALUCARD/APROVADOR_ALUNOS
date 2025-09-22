@@ -7,15 +7,15 @@ namespace APROVADOR_ALUNOS.services.disciplina
 {
     internal class ServicosDisciplina
     {
-        private static Lista<Disciplina> lista;
-        public static Lista<Disciplina> iniciar(string caminho)
+        private static Lista<Disciplina> lista; //Lista separada para a classe Lista
+        public static Lista<Disciplina> iniciar(string caminho) //Instancia minha lista de Disciplinas a partir do meu arquivo
         {
             lista = new Lista<Disciplina>(); // instanciando a lista
 
             using (StreamReader sr = new StreamReader(caminho))
             {
                 string linha;
-                while ((linha = sr.ReadLine()) != null)
+                while ((linha = sr.ReadLine()) != null) //Lógica para percorrer a minha lista no .txt
                 {
                     string[] vect = linha.Split(";");
                     Disciplina disciplina = new Disciplina(int.Parse(vect[0]), vect[1], float.Parse(vect[2]));
@@ -25,7 +25,7 @@ namespace APROVADOR_ALUNOS.services.disciplina
             return lista;
         }
 
-        public static Disciplina Buscar_codigo(int codigo)
+        public static Disciplina Buscar_codigo(int codigo) //método stático para instanciar um objeto a partir do Id
         {
             No<Disciplina> atual = lista.getInicio();
 
@@ -41,7 +41,7 @@ namespace APROVADOR_ALUNOS.services.disciplina
             return null;
         }
 
-        public static Disciplina Buscar_codigo(Lista<Disciplina> listaDisciplinas, int codigo)
+        public static Disciplina Buscar_codigo(Lista<Disciplina> listaDisciplinas, int codigo) //método stático sobrescrito para instanciar um objeto no Curso
         {
             No<Disciplina> atual = listaDisciplinas.getInicio();
 

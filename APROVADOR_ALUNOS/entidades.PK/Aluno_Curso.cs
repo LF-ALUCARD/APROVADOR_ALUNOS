@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace APROVADOR_ALUNOS.entidades.PK
 {
-    internal class Aluno_Curso
+    internal class Aluno_Curso //CLASSE DA MINHA CHAVE COMPOSTA DE CURSO
     {
         private Aluno aluno;
         private Disciplina disciplina;
