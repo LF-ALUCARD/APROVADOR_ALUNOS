@@ -10,9 +10,9 @@ namespace APROVADOR_ALUNOS
     {
         static void Main(string[] args)
         {
-            String caminho = "C:\\Users\\luiz.oliveira\\Documents\\aluno.txt";
-            String caminho2 = "C:\\Users\\luiz.oliveira\\Documents\\disciplina.txt";
-            String caminho3 = "C:\\Users\\luiz.oliveira\\Documents\\curso.txt";
+            String caminho = "aluno.txt";
+            String caminho2 = "disciplina.txt";
+            String caminho3 = "curso.txt";
 
             UI ui = new UI(caminho, caminho2, caminho3); //Instancia minhas listas e meu UI de console
 
