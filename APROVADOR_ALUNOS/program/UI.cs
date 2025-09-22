@@ -170,11 +170,39 @@ namespace APROVADOR_ALUNOS.program
 
         public void Por_Disciplina_Nome()
         {
+            Console.Clear();
+            Console.Write("Digite o nome da disciplina: ");
+            String nome = Console.ReadLine();
+
+            if (!ServicosDisciplina.verificador_nome(nome))
+            {
+                Console.WriteLine("Nome inexistente");
+                continuar();
+            }
+
+            Disciplina disciplina = ServicosDisciplina.Buscar_Nome(nome);
+
+            ServicosCursos.ListarDesempenhoDaDisciplina(disciplina, curso);
+            continuar();
 
         }
 
         public void Por_Disciplina_Codico()
         {
+            Console.Clear();
+            Console.Write("Digite o códico da disciplina: ");
+            int id = int.Parse(Console.ReadLine());
+
+            if (!ServicosDisciplina.verificador_id(id))
+            {
+                Console.WriteLine("códico inexistente");
+                continuar();
+            }
+
+            Disciplina disciplina = ServicosDisciplina.Buscar_codigo(id);
+
+            ServicosCursos.ListarDesempenhoDaDisciplina(disciplina, curso);
+            continuar();
 
         }
 
