@@ -1,13 +1,32 @@
 ﻿using APROVADOR_ALUNOS.entidades;
+using APROVADOR_ALUNOS.services;
 using APROVADOR_ALUNOS.services.alunos;
+using APROVADOR_ALUNOS.services.disciplina;
+using APROVADOR_ALUNOS.services.curso;
 using System;
 
 namespace APROVADOR_ALUNOS.program
 {
     internal class UI
     {
-        public static void menu()
+
+        private Lista<Aluno> aluno;
+        private Lista<Curso> curso;
+        private Lista<Disciplina> disciplina;
+
+
+        public UI(String caminho_aluno, String caminho_disciplina, String caminho_curso)
+        { 
+            aluno = ServicosAlunos.iniciar(caminho_aluno);
+            disciplina = ServicosDisciplina.iniciar(caminho_disciplina);
+            curso = ServicosCursos.iniciar(caminho_curso, aluno, disciplina);
+        }
+
+
+        public void menu() //Menu inicial da minha tela
         {
+
+
             Console.WriteLine("BEM VINDO AO MENU DE DADOS");
             Console.WriteLine("[1] - Buscar Resultados");
             Console.WriteLine("[2] - Sair");
@@ -31,12 +50,13 @@ namespace APROVADOR_ALUNOS.program
             }
         }
 
-        private static void Buscar()
+        private void Buscar() //MENU DE OPÇÃO DE BUSCA
         {
-            Console.Clear();
+            Console.Clear(); //Faz a limpeza do console, para imprimir o novo Menu
             Console.WriteLine("MENU DE BUSCA");
             Console.WriteLine("[1] - Por Alunos");
             Console.WriteLine("[2] - Por Disciplina");
+            Console.Write("Digite sua opção: ");
             int opcao = int.Parse(Console.ReadLine());
 
             if (opcao == 1)
@@ -54,18 +74,19 @@ namespace APROVADOR_ALUNOS.program
             }
         }
 
-        private static void Por_Aluno()
+        private void Por_Aluno() //MENU PARA ESCOLHER COMO QUER BUSCAR O ALUNO
         {
-            Console.Clear();
+            Console.Clear(); //Faz a limpeza do console, para imprimir o novo Menu
             Console.WriteLine("MENU DE BUSCA DE ALUNO");
             Console.WriteLine("[1] - Buscar por nome");
             Console.WriteLine("[2] - Buscar por matricula");
+            Console.Write("Digite sua opção: ");
 
             int opcao = int.Parse(Console.ReadLine());
 
             if (opcao == 1)
             {
-                
+                Por_Aluno_Nome();
             }
             else if (opcao == 2)
             {
@@ -74,30 +95,39 @@ namespace APROVADOR_ALUNOS.program
             else
             {
                 Console.WriteLine("Opção invalida!");
-                continuar();
+                continuar(); //Caso escolha uma opção errada, volta para o inicio
             }
 
         }
 
-        private static void Por_Aluno_Nome()
+        private void Por_Aluno_Nome() //Opção para buscar o Aluno Por nome
         {
             Console.Clear();
             Console.Write("Digite o nome completo do Aluno: ");
             String nome = Console.ReadLine();
-            Aluno aluno = ServicosAlunos.Buscar_Nome(nome);
+
+            if (!ServicosAlunos.verificador_nome(nome)) {
+                Console.WriteLine("Nome não encontrado");
+                continuar();
+            }
+
+            Aluno estudante = ServicosAlunos.Buscar_Nome(nome); //Método que retorna o objeto aluno pelo nome
+            
 
             Console.WriteLine();
 
             Console.WriteLine("===DADOS DO ALUNO==");
+            ServicosCursos.ListarDesempenhoDoAluno(estudante, this.curso); //Método void que imprime os dados do Aluno com a lista de disciplinas cursadas
+            continuar(); //Volta ao Menu Inicial do Projeto
         }
 
-        private static void Por_Discipluna()
+        private void Por_Discipluna()
         {
 
         }
 
         // Metodo para apagar tudo e iniciar camêra do zero
-        private static void continuar()
+        private void continuar()
         {
             Console.WriteLine("clique em alguma tecla para continuar!");
             Console.ReadKey();

@@ -1,4 +1,5 @@
 ﻿using APROVADOR_ALUNOS.entidades.PK;
+using APROVADOR_ALUNOS.services;
 using APROVADOR_ALUNOS.services.alunos;
 using APROVADOR_ALUNOS.services.disciplina;
 using System;
@@ -17,12 +18,21 @@ namespace APROVADOR_ALUNOS.entidades
 
         public Curso() { }
 
-        public Curso (int matricula, int codicoDisciplina, float nota1, float nota2)
+
+        public Curso(int matricula, int codicoDisciplina, float nota1, float nota2, Lista<Aluno> listaAlunos, Lista<Disciplina> listaDisciplinas)
         {
-            aluno.setAluno(ServicosAlunos.Buscar_Matricula(matricula)); // Busca o aluno da lista de Matricula
-            aluno.setDisciplina(ServicosDisciplina.Buscar_codigo(codicoDisciplina));
+            this.aluno = new Aluno_Curso();
+            this.aluno.setAluno(ServicosAlunos.Buscar_Matricula(listaAlunos, matricula));
+            this.aluno.setDisciplina(ServicosDisciplina.Buscar_codigo(listaDisciplinas, codicoDisciplina));
             this.nota1 = nota1;
             this.nota2 = nota2;
+        }
+
+
+
+        public Aluno_Curso getAluno()
+        {
+            return aluno;
         }
 
         public float getNota1() { return nota1; }

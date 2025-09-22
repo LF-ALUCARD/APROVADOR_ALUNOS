@@ -8,7 +8,6 @@ namespace APROVADOR_ALUNOS.services.disciplina
     internal class ServicosDisciplina
     {
         private static Lista<Disciplina> lista;
-
         public static Lista<Disciplina> iniciar(string caminho)
         {
             lista = new Lista<Disciplina>(); // instanciando a lista
@@ -41,5 +40,23 @@ namespace APROVADOR_ALUNOS.services.disciplina
             }
             return null;
         }
+
+        public static Disciplina Buscar_codigo(Lista<Disciplina> listaDisciplinas, int codigo)
+        {
+            No<Disciplina> atual = listaDisciplinas.getInicio();
+
+            while (atual != null)
+            {
+                Disciplina disciplina = atual.getElemento();
+                if (disciplina.getCodicoDisciplina() == codigo)
+                {
+                    return disciplina;
+                }
+                atual = atual.getNo();
+            }
+
+            return null;
+        }
+
     }
 }

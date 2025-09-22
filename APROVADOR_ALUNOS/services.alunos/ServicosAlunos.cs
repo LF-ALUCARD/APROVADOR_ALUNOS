@@ -5,11 +5,10 @@ namespace APROVADOR_ALUNOS.services.alunos
 {
     internal class ServicosAlunos
     {
-        private static Lista<Aluno> lista;
+        private static Lista<Aluno> lista = new Lista<Aluno>();
 
         public static Lista<Aluno> iniciar(String caminho)
         {
-            
             using (StreamReader sr = new StreamReader(caminho))
             {
                 String linha;
@@ -38,6 +37,24 @@ namespace APROVADOR_ALUNOS.services.alunos
             return null;
         }
 
+        public static Aluno Buscar_Matricula(Lista<Aluno> listaAlunos, int matricula)
+        {
+            No<Aluno> atual = listaAlunos.getInicio();
+
+            while (atual != null)
+            {
+                Aluno aluno = atual.getElemento();
+                if (aluno.getMatricula() == matricula)
+                {
+                    return aluno;
+                }
+                atual = atual.getNo();
+            }
+
+            return null;
+        }
+
+
         public static Aluno Buscar_Nome(String nome)
         {
             No<Aluno> atual = lista.getInicio();
@@ -52,6 +69,22 @@ namespace APROVADOR_ALUNOS.services.alunos
                 atual = atual.getNo();
             }
             return null;
+        }
+
+        public static Boolean verificador_nome(String nome)
+        {
+            No<Aluno> atual = lista.getInicio();
+
+            while (atual != null)
+            {
+                Aluno aluno = atual.getElemento();
+                if (nome == aluno.getNome())
+                {
+                    return true;
+                }
+                atual = atual.getNo();
+            }
+            return false;
         }
     }
 }
